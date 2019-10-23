@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="/az.js"></script>
+    <script src="/eng.js"></script>
+    <script src="/rus.js"></script>
+    <style>
+            *{
+                box-sizing: border-box;
+            }
+            a{
+                text-decoration: none;
+                color: #000000;
+            }
+            .btn-head {
+                display: block;
+                margin-left: 28%;
+                width: 40%;
+                height: 50px;
+                background-color: gold;
+                border: none;
+                border-radius: 15px;
+                font-weight: bold;
+                font-size: 1.5em;
+                text-align: center;
+                padding-top: 1%;
+            }
+    
+            header>img {
+                margin-left: 30%;
+                width: 35%;
+            }
+    
+            .btn-lists {
+                margin-top: 5%;
+                margin-left: 1%;
+                border-radius: 100%;
+                background-color: gold;
+                height: 10px;
+                display: inline-block;
+                
+            }
+    
+            .container {
+                margin-left: 25%;
+            }
+
+            .container a{
+                border: none;
+                width: 8%;
+                height: 75px;
+                text-align: center;
+                padding-top: 2%;
+            }
+            
+
+
+            .btn-list-services {
+                width: 13%;
+                height: 70px;
+                margin-left: 1%;
+            }
+    
+            .container-2 a {
+                display: inline-block;
+                width: 30%;
+                background-color: gold;
+                margin-top: 1%;
+                border: none;
+                text-align: center;
+                padding-top: 3%;
+            }
+    
+            .container-2 {
+                width: 50%;
+    
+                margin-left: 25%;
+                margin-top: 3%;
+            }
+    
+            .left-side img {
+                display: inline-block;
+            }
+    
+            .left-side {
+                margin-left: 25%;
+                width: 30%;
+    
+            }
+    
+            .eng-flag {
+                width: 10%;
+            }
+    
+            .aze-flag {
+                width: 10%;
+            }
+    
+            .rus-flag {
+    
+                width: 10%;
+            }
+    
+            footer {
+                margin-top: 5%;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                position: relative;
+            }
+    
+            .qaynar {
+                display: inline-block;
+                margin-left: 2%;
+                position: absolute;
+                top: 23%;
+            }
+    
+            .right-side {
+                display: inline-block;
+                width: 35%;
+                margin-right: 10%;
+            }
+    
+            .right-side a {
+                width: 30%;
+                height: 60px;
+                text-align: center;
+                padding-top: 4%;
+                display: inline-block;
+                margin-left: 1%;
+                background-color: gold;
+                border: none;
+            }
+        </style>
+</head>
+
+<body>
+
+
+
+    <script>
+        function creat(object, second_object, third_object,service_name) {
+            let bod = document.createElement('div');
+            bod.className = 'container';
+            let head = document.createElement('header');
+            let logo = document.createElement('img');
+            logo.src = '/asssets/easy.png';
+            let btn_logo = document.createElement('a');
+            btn_logo.innerText = service_name;
+            btn_logo.href = 'https://www.google.az';
+            btn_logo.className = 'btn-head';
+            let bod2 = document.createElement('div');
+            bod2.className = 'container-2';
+
+
+            head.appendChild(logo);
+            head.appendChild(btn_logo);
+            head.appendChild(bod);
+            document.body.appendChild(head);
+            document.body.appendChild(bod2);
+            
+            for (let f in object) {
+                let bt1 = document.createElement(object[f].name);
+                bt1.innerText = object[f].value;
+                bt1.href = object[f].clicked;
+                bt1.className = 'btn-lists';
+                bod.appendChild(bt1);
+            }
+
+
+
+            for (let f in second_object) {
+                let bt2 = document.createElement(second_object[f].name);
+                bt2.innerText = second_object[f].value;
+                bt2.className = 'btn-list-services';
+                bt2.href = second_object[f].clicked;
+                bod2.appendChild(bt2);
+            }
+
+
+            let footr = document.createElement('footer');
+            document.body.appendChild(footr);
+            let left = document.createElement('div');
+            left.className = 'left-side';
+            footr.appendChild(left);
+
+
+
+            let eng = document.createElement('img');
+            eng.src = 'asssets/eng.png';
+            eng.className = 'eng-flag';
+            eng.addEventListener('click',change_eng);
+            left.appendChild(eng);
+
+            let aze = document.createElement('img');
+            aze.src = 'asssets/az.png';
+            aze.className = 'aze-flag';
+            aze.addEventListener('click',change_aze);
+            left.appendChild(aze);
+
+            let ru = document.createElement('img');
+            ru.src = 'asssets/rus.png';
+            ru.className = 'rus-flag';
+            ru.addEventListener('click',change_rus);
+            left.appendChild(ru);
+
+            let qaynar = document.createElement('p');
+            qaynar.innerText = 'QAYNAR XETT: 132';
+            qaynar.className = 'qaynar';
+            left.appendChild(qaynar);
+
+            let right = document.createElement('div');
+            right.className = 'right-side';
+            footr.appendChild(right);
+
+
+            for (let f in  third_object) {
+                let bt3 = document.createElement(third_object[f].name);
+                bt3.innerText = third_object[f].value;
+                bt3.className = 'btn-list-rules';
+                bt3.href = third_object[f].clicked;
+                right.appendChild(bt3);
+            }
+        }
+
+        function change_eng(){
+            document.body.innerHTML = '';
+            creat(easypayeng_eng,services_eng,rules_eng,'Choose Services');
+        }
+
+        function change_aze(){
+            document.body.innerHTML = '';
+            creat(easypay,services,rules,'Xidmeti Secin');
+        }
+
+        function change_rus(){
+            document.body.innerHTML = '';
+            creat(easypayeng_ru,services_ru,rules_ru,'выбрать услуги');
+        }
+
+        creat(easypay,services,rules,'Xidmeti Secin');
+        
+    </script>
+
+</body>
+
+</html>
